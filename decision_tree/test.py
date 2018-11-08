@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 
+
 class Node:
     def __init__(self, num=None, feature=None, value=None, right=None, left=None, ls=None):
         self.num = num
