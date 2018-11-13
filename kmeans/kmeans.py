@@ -4,6 +4,7 @@ import pandas as pd
 
 
 def load_data():
+    # Irisデータをロードする
 
     path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/'
     data = 'iris.data'
@@ -13,12 +14,15 @@ def load_data():
 
     return df
 
-def export_to_array(df1):
+def export_to_array(df):
+    # dataframeをarrayに変換する
 
-    arr1 = df1.values
-    return arr1
+    arr = df.values
+    return arr
 
 def kmeans(array,k, n):
+    # kmeansによりクラスタリングを行う
+
     cent_index = np.random.choice(array.shape[0], k)
     centroids = array[cent_index]
 
@@ -54,15 +58,10 @@ if __name__ == '__main__':
 
     array = export_to_array(df)
 
-    class_array = kmeans(array, k, n)
+    class_array = kmeans(array, 3, 4)
 
-    x = np.arange(array.shape[0])
-    y = class_array
-
-    plt.plot(x, y)
+    df['cluster'] = class_array
+    df.plot(kind='scatter', x=0, y=1, c='cluster', cmap='winter')
     plt.show()
-
-
-
 
 

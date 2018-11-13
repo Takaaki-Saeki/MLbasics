@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from operator import itemgetter
 
 def load_data():
+    # Irisデータをロードする
 
     path = 'https://archive.ics.uci.edu/ml/machine-learning-databases/iris/'
     data = 'iris.data'
@@ -17,6 +18,7 @@ def load_data():
 
 
 def train_test_split(df, num):
+    # trainデータとtestデータを分割し、さらにanswerを返す
     dev_num = round(df.shape[0]/num)
     test_index = np.random.choice(df.shape[0], dev_num)
     train_index = np.array([x for x in df.index if x not in test_index])
@@ -29,6 +31,7 @@ def train_test_split(df, num):
 
 
 def export_to_array(df1, df2):
+    # dataframeをarrayに変換
     arr1 = df1.values
     arr2 = df2.values
 
@@ -36,6 +39,7 @@ def export_to_array(df1, df2):
 
 
 def knn(train_arr, test_arr, k):
+    # knnによりクラス分けを行う
 
     class_list = []
 
@@ -59,6 +63,7 @@ def knn(train_arr, test_arr, k):
 
 
 def validation(class_list, test_ans):
+    # 交差検証
 
     correct_num = 0
     class_array = np.array(class_list)
