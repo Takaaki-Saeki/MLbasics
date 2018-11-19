@@ -96,8 +96,14 @@ if __name__ == '__main__':
     x = np.arange(1, 31, 1)
     y = np.array(precision_list)
 
-    plt.plot(x, y)
-    plt.title('k-precision graph')
+    plt.plot(x, y, color='black')
+    plt.title('k-precision')
+    plt.xlabel('k')
+    plt.ylabel('precision')
+    plt.xticks(np.arange(0, 32, 2))
+    plt.xlim([1, 30])
+    plt.grid()
+    plt.savefig('fig21.jpg')
     plt.show()
 
 

@@ -10,9 +10,13 @@ def load_data():
     data = 'iris.data'
 
     df = pd.read_table(path + data, sep=',', header=None)
+    df.loc[(df[4] == 'Iris-setosa'), 4] = 0
+    df.loc[(df[4] == 'Iris-versicolor'), 4] = 1
+    df.loc[(df[4] == 'Iris-virginica'), 4] = 2
+    target = np.array(df[4])
     df.drop([4], axis=1, inplace=True)
 
-    return df
+    return df, target
 
 def export_to_array(df):
     # dataframeをarrayに変換する
@@ -51,17 +55,20 @@ def kmeans(array,k, n):
     return class_array
 
 
-
 if __name__ == '__main__':
 
-    df = load_data()
+    df, target = load_data()
 
     array = export_to_array(df)
 
-    class_array = kmeans(array, 3, 4)
+    class_array = kmeans(array, 4, 4)
 
     df['cluster'] = class_array
-    df.plot(kind='scatter', x=0, y=1, c='cluster', cmap='winter')
+    df.plot(kind='scatter', x=0, y=1, c='cluster', cmap='summer')
+    plt.title('result')
+    plt.xlabel('sepal length [cm]')
+    plt.ylabel('sepal width [cm]')
+    plt.savefig('result3.jpg')
     plt.show()
 
 
